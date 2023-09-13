@@ -3,33 +3,43 @@ struct studentInfo
 {
      int rollNo;
      char  name[40];// char name[40];
-     int contact;
+     int contact = 0;
     char  email[40];
     char  address[40];
+    
 };
 
 int main(int argc, char const *argv[])
 {
-    studentInfo s1;
+    studentInfo list[5];
 
     // accepting info
     printf("Enter student details\n");
-    printf("\nEnter Name:");
-    gets(s1.name);
-    printf("\nEnter Email:");
-    gets(s1.email);
-    printf("\nEnter Address:");
-    gets(s1.address);
-    printf("\nEnter Roll no :");
-    scanf("%d",&s1.rollNo);
+    for(int i=0;i<5;i++)
+    {
+        printf("\nEnter Name:");
+        scanf("%s",list[i].name);
+        printf("\nEnter Email:");
+        scanf("%s",list[i].email);
+        printf("\nEnter Address:");
+        scanf("%s",list[i].address);
+        printf("\nEnter Roll no :");
+        scanf("%d",&list[i].rollNo);
+    }
+   
 
     // printing student info
     printf("Enter details are :");
-    puts(s1.name);
-    puts(s1.email);
-    puts(s1.address);
-    printf("%d\n",s1.rollNo);
-    printf("%d",s1.contact);
+    for(int i=0;i<5;i++)
+    {
+        printf("\n*****************\n");
+        puts(list[i].name);
+        puts(list[i].email);
+        puts(list[i].address);
+        printf("%d\n",list[i].rollNo);
+        printf("%d",list[i].contact);
+    }
+   
     
     return 0;
 }
