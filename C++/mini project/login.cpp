@@ -1,53 +1,48 @@
 #include<iostream>
 #include<fstream>
 #include<string.h>
+#include"student.h"
 using namespace std;
 
-class Student
-{
-private:
-    int rollno;
-    char name[40];
-    char email[20];
-    char password[10];
-public:
-    Student(/* args */) {
-    }
-    void setName(char n[])
-    {
-         strcpy(this->name,n);
-    }
-    char * getName()
-    {
-        return this->name;
-    }
-    void setEmail(char n[])
-    {
-         strcpy(this->email,n);
-    }
-    char * getEmail()
-    {
-        return this->email;
-    }
-    void setPassword(char n[])
-    {
-         strcpy(this->password,n);
-    }
-    char * getPassword()
-    {
-        return this->password;
-    }
-};
  
-
 int main(int argc, char const *argv[])
 {
+    char email[20];
+    char password[10];
+    int flag = 0;
+    cout << "Enter your email :";
+    cin >> email;
+    cout << "Enter your Password :";
+    cin >> password;
+
     Student s;
     ifstream fin;
     fin.open("data.txt");
-    fin.seekg(sizeof(s));
-    fin.read((char*)&s,sizeof(s));
-    cout << s.getEmail();
+    
+    while(!fin.eof()){
+       fin.read((char*)&s,sizeof(s));
+       if(strcmp(s.getEmail(),email) == 0)
+       {
+               flag = -1;
+            if(strcmp(s.getPassword(),password) == 0)
+            {
+                flag = 1;
+            }
+         
+       }
+    }
+
+    if(flag == 0)
+    {
+        cout << "User does not exists" <<endl;
+    }
+    else if(flag == -1){
+         cout << "Invalid creds "<< endl;
+    }
+    else{
+        cout << "login successfull "<< endl;
+    }
+    
 
     return 0;
 }
