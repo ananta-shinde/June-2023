@@ -1,27 +1,65 @@
 #include<iostream>
 using namespace std;
-
-struct node{
+class Node{
+    public :
     int data;
-    node *next = NULL;
+    Node* next = NULL;
 };
 
+// insert at start
+void push(Node** head,int data)
+{
+    Node* new_node = new Node();
+    new_node->data = data;
+    new_node->next = *head;
+    *head = new_node;
+}
 
+// insert at end
+void insertAtEnd(Node** head,int data)
+{
+    Node* new_node = new Node();
+     Node* current = *head;
+    new_node->data = data;
+    // new_node->next = *head;
+    // *head = new_node;
+    if(*head  == NULL)
+    {
+        *head = new_node;
+    }
+    else{
+        while(current->next != NULL)
+        {
+              current =  current->next;
+        }
+        current->next = new_node;
+    }
+}
+
+void printList(Node* head)
+{
+   Node* current = head;
+   while(current != NULL){
+      cout << current->data << " ";
+      current = current->next;
+   }
+}
 
 
 int main(int argc, char const *argv[])
 {
-    node * start = NULL;
-    node n1;
-    start = &n1;
-    n1.data = 100;
-    cout << start << endl;
-    cout << start->data << endl;
-    node n2;
-    n2.data = 110;
-    start->next= &n2;
-    cout << start->data;
-    cout << start->next->data;
+    Node* head = NULL;
+    push(&head,20);
+    push(&head,30);
+    push(&head,40);
+    insertAtEnd(&head,50);
+   
+    printList(head);
+    
+
+
 
     return 0;
 }
+
+
