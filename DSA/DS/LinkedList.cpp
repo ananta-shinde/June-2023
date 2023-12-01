@@ -114,8 +114,7 @@ int main(int argc, char const *argv[])
      list.insertAtEnd(60);
  
      // insert at position
-     list.insertAtPosition(55,2);
-      
+     list.insertAtPosition(55,2); 
      list.printList();
 
     return 0;
