@@ -97,16 +97,57 @@ class SLinkedList{
             }
         }
     }
+
+    void deleteAtStart()
+    {
+       if(head != NULL)
+       {
+            if(head->next == NULL)
+         {
+            head = NULL;
+         }
+         else{
+             head = head->next;
+         }
+       }
+       else{
+           cout << "List is empty" << endl;
+       } 
+    }
+
+    void deleteAtEnd()
+    {
+        if(head == NULL)
+        {
+            cout << "list is empty "<< endl;
+        }
+        else{
+            if(head->next == NULL)
+            {
+                 head = NULL;
+            }
+            else{
+                Node* temp = head;
+                while(temp->next->next != NULL)
+                {
+                    temp = temp->next;
+                }
+                temp->next = NULL;
+            }
+        }
+    }
 };
 
 
 int main(int argc, char const *argv[])
 {
      SLinkedList list;
-
-     list.printList();
+     
+    //  list.deleteAtEnd();
+    //  list.printList();
      // insert at start
      list.insertatStart(20);
+     list.deleteAtEnd();
      list.insertatStart(30);
 
      // insert at end
@@ -115,6 +156,8 @@ int main(int argc, char const *argv[])
  
      // insert at position
      list.insertAtPosition(55,2); 
+     list.deleteAtStart();
+     list.deleteAtEnd();
      list.printList();
 
     return 0;
